@@ -1,0 +1,7 @@
+{
+  "name": "uts_mobile2_25471",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
