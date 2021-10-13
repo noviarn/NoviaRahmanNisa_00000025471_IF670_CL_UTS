@@ -2,6 +2,10 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
+import TargetGebetan from './pages/TargetGebetan';
+import Profile from './pages/Profile';
+import SideMenu from './components/SideMenu';
+import GebetansContextProvider from './components/GebetanContextProvider';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -25,14 +29,15 @@ import './theme/variables.css';
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-      </IonRouterOutlet>
+      <SideMenu />
+        <GebetansContextProvider>
+          <IonRouterOutlet id="main">
+            <Route path="/home" component={Home} />
+            <Route path="/target-gebetan" component={TargetGebetan}/>
+            <Route path="/profil" component={Profile}/>
+            <Redirect exact from="/" to="/home" />
+          </IonRouterOutlet>
+      </GebetansContextProvider>
     </IonReactRouter>
   </IonApp>
 );
